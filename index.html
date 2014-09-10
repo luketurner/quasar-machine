@@ -3,10 +3,19 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Quasar</title>
+    <link href="app.css" type="text/css" rel="stylesheet">
+    <script src="bower_components/threejs/build/three.js"></script>
+    <script src="bower_components/knockoutjs/dist/knockout.js"></script>
+    <script src="TrackballControls.js"></script>
 </head>
 <body>
-    <script src="bower_components/threejs/build/three.js"></script>
-    <script src="TrackballControls.js"></script>
-    <script src="app.js"></script>
+    <div id="settings">
+        <label>Particles</label><input data-bind="value: settings().num_particles">
+        <label>Stars</label><input data-bind="value: settings().num_stars">
+        <label>Beams</label><input data-bind="value: settings().num_beams">
+        <label>Wireframe</label><input type="checkbox" data-bind="checked: settings().show_wireframe">
+        <button data-bind="click: settings.valueHasMutated">Redraw</button>
+    </div>
+    <script data-main="scripts/init" src="bower_components/requirejs/require.js"></script>
 </body>
 </html>
