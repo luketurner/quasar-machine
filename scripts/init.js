@@ -32,9 +32,9 @@
     rebuild = function(settings) {
       var scene;
       scene = new THREE.Scene();
-      accretionDisk(scene, settings);
-      lightPillar(scene, settings);
-      starField(scene, settings);
+      scene.add(accretionDisk(settings));
+      scene.add(lightPillar(settings));
+      scene.add(starField(settings));
       return scene;
     };
     initViewModel = function() {

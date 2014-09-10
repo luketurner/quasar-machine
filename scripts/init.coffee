@@ -26,9 +26,9 @@ require(["builders/accretionDisk", "builders/lightPillar", "builders/starField"]
 
   rebuild = (settings) ->
     scene = new THREE.Scene();
-    accretionDisk(scene, settings)
-    lightPillar(scene, settings)
-    starField(scene, settings)
+    scene.add(accretionDisk(settings))
+    scene.add(lightPillar(settings))
+    scene.add(starField(settings))
     return scene
 
   initViewModel = () -> settings: ko.observable(
