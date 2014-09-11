@@ -52,6 +52,9 @@ require(["builders/debugWireframes", "builders/accretionDisk", "builders/lightPi
         data.color = "#" + colorPicker.CP.hex
       colorPicker(event)
 
+    viewModel.showSettings = ko.observable(true);
+    viewModel.toggleSettings = () -> viewModel.showSettings(!viewModel.showSettings())
+
     ko.applyBindings(viewModel)
 
     viewModel.updateQuasar()

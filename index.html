@@ -11,24 +11,31 @@
 </head>
 <body>
     <div id="settings">
-        <table>
-            <thead>
-                <tr>
-                    <th></th><th>Quantity</th><th>Color</th><th>Opacity</th><th>Scale</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: Object.keys(settings())">
-                <tr data-bind="with: $root.settings()[$data]">
-                    <td><label data-bind="text: _displayName"></label></td>
-                    <td><input data-bind="value: quantity"></td>
-                    <td><input data-bind="value: color, click: $root.colorPicker"></td>
-                    <td><input data-bind="value: opacity"></td>
-                    <td><input data-bind="value: scale"></td>
-                </tr>
-            </tbody>
-        </table>
-        <button data-bind="click: updateQuasar">Update</button>
+        <div data-bind="if: showSettings">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th><th>Quantity</th><th>Color</th><th>Opacity</th><th>Scale</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: Object.keys(settings())">
+                    <tr data-bind="with: $root.settings()[$data]">
+                        <td><label data-bind="text: _displayName"></label></td>
+                        <td><input data-bind="value: quantity"></td>
+                        <td><input data-bind="value: color, click: $root.colorPicker"></td>
+                        <td><input data-bind="value: opacity"></td>
+                        <td><input data-bind="value: scale"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button data-bind="click: toggleSettings">Hide</button>
+            <button data-bind="click: updateQuasar">Update</button>
+        </div>
+        <div data-bind="ifnot: showSettings">
+            <button data-bind="click: toggleSettings">Show</button>
+        </div>
     </div>
+
     <script data-main="scripts/init" src="bower_components/requirejs/require.js"></script>
 </body>
 </html>

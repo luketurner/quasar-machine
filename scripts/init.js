@@ -64,6 +64,10 @@
         };
         return colorPicker(event);
       };
+      viewModel.showSettings = ko.observable(true);
+      viewModel.toggleSettings = function() {
+        return viewModel.showSettings(!viewModel.showSettings());
+      };
       ko.applyBindings(viewModel);
       viewModel.updateQuasar();
       return animate();
