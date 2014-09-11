@@ -10,11 +10,23 @@
 </head>
 <body>
     <div id="settings">
-        <label>Particles</label><input data-bind="value: settings().num_particles">
-        <label>Stars</label><input data-bind="value: settings().num_stars">
-        <label>Beams</label><input data-bind="value: settings().num_beams">
-        <label>Wireframe</label><input type="checkbox" data-bind="checked: settings().show_wireframe">
-        <button data-bind="click: settings.valueHasMutated">Redraw</button>
+        <table>
+            <thead>
+                <tr>
+                    <th></th><th>Quantity</th><th>Color</th><th>Opacity</th><th>Scale</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: Object.keys(settings())">
+                <tr data-bind="with: $root.settings()[$data]">
+                    <td><label data-bind="text: _displayName"></label></td>
+                    <td><input data-bind="value: quantity"></td>
+                    <td><input data-bind="value: color"></td>
+                    <td><input data-bind="value: opacity"></td>
+                    <td><input data-bind="value: scale"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button data-bind="click: updateQuasar">Update</button>
     </div>
     <script data-main="scripts/init" src="bower_components/requirejs/require.js"></script>
 </body>

@@ -16,13 +16,11 @@ define(() ->
     material = new THREE.PointCloudMaterial(color: color, size: size)
     return new THREE.PointCloud(geometry, material)
 
-  build = (settings) ->
+  return (settings) ->
     accretionDisk = new THREE.Object3D()
-    accretionDisk.add(accretionParticles(20, 3, settings.num_particles * 0.05, 0xffffff, 0.1))
-    accretionDisk.add(accretionParticles(20, 3, settings.num_particles * 0.95, 0xff9999, 0.05))
-    if settings.show_wireframe
-      accretionDisk.add(new THREE.Mesh(new THREE.CylinderGeometry(20,20,2,32,1,true), new THREE.MeshBasicMaterial(color: 0xff0000, wireframe: true)))
+    particles = settings.diskParticles
+    clouds = settings.diskClouds
+    accretionDisk.add(accretionParticles(20, 3, particles.quantity * 0.05, new THREE.Color("#222").add(particles.color3()), 0.1 * particles.scale))
+    accretionDisk.add(accretionParticles(20, 3, particles.quantity * 0.95, particles.color3(), 0.05 * particles.scale))
     return accretionDisk
-
-  return build;
 )

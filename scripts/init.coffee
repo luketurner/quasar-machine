@@ -1,4 +1,4 @@
-require(["builders/accretionDisk", "builders/lightPillar", "builders/starField"], (accretionDisk, lightPillar, starField) ->
+require(["builders/debugWireframes", "builders/accretionDisk", "builders/lightPillar", "builders/starField", "settings"], (debugWireframes, accretionDisk, lightPillar, starField, settings) ->
   initCamera = () ->
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
     camera.position.z = 50
@@ -26,17 +26,11 @@ require(["builders/accretionDisk", "builders/lightPillar", "builders/starField"]
 
   rebuild = (settings) ->
     scene = new THREE.Scene();
+    scene.add(debugWireframes(settings))
     scene.add(accretionDisk(settings))
     scene.add(lightPillar(settings))
     scene.add(starField(settings))
     return scene
-
-  initViewModel = () -> settings: ko.observable(
-      num_particles: 5000,
-      num_beams: 1000,
-      num_stars: 1000,
-      show_wireframe: false
-    )
 
   init = () ->
     scene = new THREE.Scene();
@@ -48,16 +42,14 @@ require(["builders/accretionDisk", "builders/lightPillar", "builders/starField"]
       requestAnimationFrame(animate)
       controls.update()
 
-    viewModel = initViewModel()
+    viewModel = settings: ko.observable(settings)
+    viewModel.updateQuasar = () ->
+      scene = rebuild(viewModel.settings())
+      render()
+
     ko.applyBindings(viewModel)
 
-    viewModel.settings.subscribe((s) ->
-      scene = rebuild(s)
-      render())
-
-    viewModel.settings.valueHasMutated()
-
-    render()
+    viewModel.updateQuasar()
     animate()
 
   init()

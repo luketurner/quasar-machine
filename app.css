@@ -4,9 +4,8 @@
     background-color: rgba(0,0,0,0.7);
     color: lightgray;
     position: fixed;
-    top: 5px;
-    left: 5px;
-    width: 225px;
+    top: 10px;
+    left: 10px;
     padding: 5px;
 }
 
@@ -15,12 +14,4 @@ label {
     text-align: right;
 }
 
-input, label, button {
-    display: inline-block;
-    width: 50%;
-    margin: 3px 0;
-}
-
-button {
-    margin-left: 50%;
-}
+td, th, input { width: 65px; }
