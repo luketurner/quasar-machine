@@ -6,8 +6,9 @@ define (() ->
 
   return (settings) ->
     wireframes = new THREE.Object3D()
-    wireframes.add(makeWireframe(settings.wireframes, 1, 25, 3))
-    wireframes.add(makeWireframe(settings.wireframes, 0.5, 50, 6))
-    wireframes.add(makeWireframe(settings.wireframes, 20, 2, 32))
+    if (settings.wireframes.opacity > 0)
+      wireframes.add(makeWireframe(settings.wireframes, 1, 25, 3))
+      wireframes.add(makeWireframe(settings.wireframes, 0.5, 50, 6))
+      wireframes.add(makeWireframe(settings.wireframes, 20, 2, 32))
     return wireframes
 )

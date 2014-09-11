@@ -47,6 +47,11 @@ require(["builders/debugWireframes", "builders/accretionDisk", "builders/lightPi
       scene = rebuild(viewModel.settings())
       render()
 
+    viewModel.colorPicker = (data, event) ->
+      colorPicker.exportColor = () ->
+        data.color = "#" + colorPicker.CP.hex
+      colorPicker(event)
+
     ko.applyBindings(viewModel)
 
     viewModel.updateQuasar()

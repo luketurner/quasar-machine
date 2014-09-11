@@ -7,6 +7,7 @@
     <script src="bower_components/threejs/build/three.js"></script>
     <script src="bower_components/knockoutjs/dist/knockout.js"></script>
     <script src="TrackballControls.js"></script>
+    <script src="colorPicker.js"></script>
 </head>
 <body>
     <div id="settings">
@@ -20,7 +21,7 @@
                 <tr data-bind="with: $root.settings()[$data]">
                     <td><label data-bind="text: _displayName"></label></td>
                     <td><input data-bind="value: quantity"></td>
-                    <td><input data-bind="value: color"></td>
+                    <td><input data-bind="value: color, click: $root.colorPicker"></td>
                     <td><input data-bind="value: opacity"></td>
                     <td><input data-bind="value: scale"></td>
                 </tr>

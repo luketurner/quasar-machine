@@ -10,7 +10,7 @@
       setting = {
         _displayName: displayName,
         quantity: (_ref = defaults.quantity) != null ? _ref : 1,
-        color: (_ref1 = defaults.color) != null ? _ref1 : 0xffffff,
+        color: (_ref1 = defaults.color) != null ? _ref1 : "#FFFFFF",
         opacity: (_ref2 = defaults.opacity) != null ? _ref2 : 1,
         scale: (_ref3 = defaults.scale) != null ? _ref3 : 1
       };
@@ -27,18 +27,19 @@
       }),
       beamClouds: makeSetting("Beam clouds", {
         quantity: 1000,
-        color: 0xffdd99,
+        color: "#FFDD99",
         opacity: 0.05
       }),
       diskClouds: makeSetting("Disk clouds", {
         quantity: 1000
       }),
       diskParticles: makeSetting("Disk particles", {
-        quantity: 5000,
-        color: 0xffbbaa
+        quantity: 15000,
+        color: "#FFBBAA"
       }),
       wireframes: makeSetting("Debug Wireframes", {
-        color: 0xff0000
+        color: "#FF0000",
+        opacity: 0
       }),
       starfield: makeSetting("Starfield", {
         quantity: 1000

@@ -15,3 +15,5 @@ label {
 }
 
 td, th, input { width: 65px; }
+
+.cPSkin { z-index: 100; }

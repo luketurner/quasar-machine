@@ -58,6 +58,12 @@
         scene = rebuild(viewModel.settings());
         return render();
       };
+      viewModel.colorPicker = function(data, event) {
+        colorPicker.exportColor = function() {
+          return data.color = "#" + colorPicker.CP.hex;
+        };
+        return colorPicker(event);
+      };
       ko.applyBindings(viewModel);
       viewModel.updateQuasar();
       return animate();

@@ -26,8 +26,8 @@
       accretionDisk = new THREE.Object3D();
       particles = settings.diskParticles;
       clouds = settings.diskClouds;
-      accretionDisk.add(accretionParticles(20, 3, particles.quantity * 0.05, new THREE.Color("#222").add(particles.color3()), 0.1 * particles.scale));
-      accretionDisk.add(accretionParticles(20, 3, particles.quantity * 0.95, particles.color3(), 0.05 * particles.scale));
+      accretionDisk.add(accretionParticles(35 * particles.scale, 5 * particles.scale, particles.quantity * 0.05, new THREE.Color("#222").add(particles.color3()), 0.1 * particles.scale));
+      accretionDisk.add(accretionParticles(35 * particles.scale, 5 * particles.scale, particles.quantity * 0.95, particles.color3(), 0.05 * particles.scale));
       return accretionDisk;
     };
   });
