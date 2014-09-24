@@ -1,6 +1,6 @@
-require(["builders/debugWireframes", "builders/accretionDisk", "builders/lightPillar", "builders/starField", "settings"], (debugWireframes, accretionDisk, lightPillar, starField, settings) ->
+require(["builders/debugWireframes", "builders/accretionDisk", "builders/lightPillar", "builders/starField", "config"], (debugWireframes, accretionDisk, lightPillar, starField, settings) ->
   initCamera = () ->
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 4000)
     camera.position.z = 50
     return camera
 
@@ -24,41 +24,40 @@ require(["builders/debugWireframes", "builders/accretionDisk", "builders/lightPi
     controls.addEventListener('change', onChange)
     return controls
 
-  rebuild = (settings) ->
+  initStats = () ->
+    stats = new Stats
+    stats.setMode(1)
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.top = '0px';
+    document.body.appendChild( stats.domElement );
+    return stats
+
+  rebuild = (config) ->
     scene = new THREE.Scene();
-    scene.add(debugWireframes(settings))
-    scene.add(accretionDisk(settings))
-    scene.add(lightPillar(settings))
-    scene.add(starField(settings))
+    scene.add(debugWireframes(config))
+    scene.add(accretionDisk(config))
+    scene.add(lightPillar(config))
+    scene.add(starField(config))
     return scene
 
   init = () ->
-    scene = new THREE.Scene();
+    stats = initStats()
+    scene = new THREE.Scene
     camera = initCamera()
     renderer = initRenderer()
     render = () -> renderer.render(scene, camera)
     controls = initControls(camera, renderer.domElement, render)
     animate = () ->
+      stats.begin()
       requestAnimationFrame(animate)
       controls.update()
+      stats.end()
 
-    viewModel = settings: ko.observable(settings)
-    viewModel.updateQuasar = () ->
-      scene = rebuild(viewModel.settings())
-      render()
 
-    viewModel.colorPicker = (data, event) ->
-      colorPicker.exportColor = () ->
-        data.color = "#" + colorPicker.CP.hex
-      colorPicker(event)
-
-    viewModel.showSettings = ko.observable(true);
-    viewModel.toggleSettings = () -> viewModel.showSettings(!viewModel.showSettings())
-
-    ko.applyBindings(viewModel)
-
-    viewModel.updateQuasar()
+    
     animate()
+
 
   init()
 )
