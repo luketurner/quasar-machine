@@ -16,7 +16,7 @@
         geometry.vertices.push(makeStar(min, max));
       }
       material = new THREE.PointCloudMaterial({
-        color: 0xfff,
+        color: 0xffffff,
         size: 0.1
       });
       return new THREE.PointCloud(geometry, material);

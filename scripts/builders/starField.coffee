@@ -13,7 +13,7 @@ define(() ->
     geometry = new THREE.Geometry()
     while n -= 1
       geometry.vertices.push(makeStar(min, max))
-    material = new THREE.PointCloudMaterial(color: 0xfff, size: 0.1)
+    material = new THREE.PointCloudMaterial(color: 0xffffff, size: 0.1)
     return new THREE.PointCloud(geometry, material)
 
 
