@@ -22,12 +22,12 @@
       return new THREE.PointCloud(geometry, material);
     };
     return function(settings) {
-      var accretionDisk, clouds, particles;
+      var accretionDisk, color, scale;
       accretionDisk = new THREE.Object3D();
-      particles = settings.diskParticles;
-      clouds = settings.diskClouds;
-      accretionDisk.add(accretionParticles(30 * particles.scale, 4 * particles.scale, particles.quantity * 0.05, new THREE.Color("#222").add(particles.color3()), 0.1 * particles.scale));
-      accretionDisk.add(accretionParticles(30 * particles.scale, 4 * particles.scale, particles.quantity * 0.95, particles.color3(), 0.05 * particles.scale));
+      scale = settings.disk_scale;
+      color = new THREE.Color(settings.disk_color);
+      accretionDisk.add(accretionParticles(30 * scale, 4 * scale, settings.disk_particles * 0.05, new THREE.Color("#222").add(color), 0.1 * scale));
+      accretionDisk.add(accretionParticles(30 * scale, 4 * scale, settings.disk_particles * 0.95, color, 0.05 * scale));
       return accretionDisk;
     };
   });

@@ -35,19 +35,10 @@ define(() ->
       pillar.add(beam)
     return pillar
 
-  makeSoftSphere = (radius, opacity, color, steps, stepSize) ->
-    sphere = new THREE.Object3D()
-    while steps -= 1
-      sphere.add(makeSphere(radius, color, opacity))
-      radius -= stepSize
-    return sphere
-
   return (settings) ->
     lightPillar = new THREE.Object3D()
-    particles = settings.beamParticles
-    clouds = settings.beamClouds
-    lightPillar.add(makeBeams(clouds.quantity, clouds.scale, clouds.color3(), clouds.opacity))
-    lightPillar.add(makeSphere(1.5 * clouds.scale, clouds.color3(), clouds.opacity * 7))
-    #lightPillar.add(makeParticles(settings.beamParticles))
+    lightPillar.add(makeBeams(settings.pillar_beams, settings.pillar_scale, settings.pillar_color, 0.1))
+    lightPillar.add(makeSphere(1.5 * settings.pillar_scale, settings.pillar_color, 0.7))
+    #lightPillar.add(makeParticles(settings.beam_particles))
     return lightPillar
 )

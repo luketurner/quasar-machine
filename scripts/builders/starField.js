@@ -9,23 +9,22 @@
       phi = THREE.Math.randFloat(0, 2 * Math.PI);
       return new THREE.Vector3(r * Math.sin(theta) * Math.cos(phi), r * Math.sin(theta) * Math.sin(phi), r * Math.cos(theta));
     };
-    makeStarField = function(settings, min, max) {
-      var geometry, material, n;
+    makeStarField = function(n, min, max) {
+      var geometry, material;
       geometry = new THREE.Geometry();
-      n = settings.quantity;
       while (n -= 1) {
         geometry.vertices.push(makeStar(min, max));
       }
       material = new THREE.PointCloudMaterial({
-        color: settings.color,
-        size: 0.1 * settings.scale
+        color: 0xfff,
+        size: 0.1
       });
       return new THREE.PointCloud(geometry, material);
     };
     return function(settings) {
       var starField;
       starField = new THREE.Object3D();
-      starField.add(makeStarField(settings.starfield, 750, 1000));
+      starField.add(makeStarField(settings.num_stars, 750, 1000));
       return starField;
     };
   });

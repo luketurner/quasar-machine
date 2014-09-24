@@ -5,11 +5,14 @@
     Settings = function() {
       this.pillar_particles = 1000;
       this.pillar_beams = 1000;
-      this.pillar_color = "#fff";
+      this.pillar_scale = 1;
+      this.pillar_color = "#FFDD99";
       this.num_stars = 1000;
-      this.disk_particles = 1000;
+      this.disk_particles = 15000;
       this.disk_clouds = 1000;
-      return this.disk_color = "#fff";
+      this.disk_scale = 1;
+      this.disk_color = "#FFBBAA";
+      return this.wireframes = false;
     };
     settings = new Settings;
     gui = new dat.GUI;
@@ -18,11 +21,14 @@
     misc = gui.addFolder("Miscellaneous");
     pillar.add(settings, 'pillar_particles', 0, 5000);
     pillar.add(settings, 'pillar_beams', 0, 5000);
+    pillar.add(settings, 'pillar_scale', 0, 5);
     pillar.add(settings, 'pillar_color', 'color0');
-    disk.add(settings, 'disk_particles', 0, 5000);
+    disk.add(settings, 'disk_particles', 0, 50000);
     disk.add(settings, 'disk_clouds', 0, 5000);
+    disk.add(settings, 'disk_scale', 0, 5);
     disk.add(settings, 'disk_color', 'color0');
     misc.add(settings, 'num_stars', 0, 5000);
+    misc.add(settings, 'wireframes');
     pillar.open();
     disk.open();
     misc.open();

@@ -9,17 +9,16 @@ define(() ->
       r * Math.cos(theta)
     )
 
-  makeStarField = (settings, min, max) ->
+  makeStarField = (n, min, max) ->
     geometry = new THREE.Geometry()
-    n = settings.quantity
     while n -= 1
       geometry.vertices.push(makeStar(min, max))
-    material = new THREE.PointCloudMaterial(color: settings.color, size: 0.1 * settings.scale)
+    material = new THREE.PointCloudMaterial(color: 0xfff, size: 0.1)
     return new THREE.PointCloud(geometry, material)
 
 
   return (settings) ->
     starField = new THREE.Object3D()
-    starField.add(makeStarField(settings.starfield, 750, 1000))
+    starField.add(makeStarField(settings.num_stars, 750, 1000))
     return starField
 )
