@@ -33,5 +33,7 @@ define(() ->
   disk.open();
   misc.open();
 
-  return settings: settings, gui: gui
+  onFinishChange = (f) -> (ctrl.onFinishChange(f) for ctrl in folder.__controllers) for folder in [pillar, disk, misc]
+
+  return settings: settings, gui: gui, onFinishChange: onFinishChange
 )

@@ -34,7 +34,7 @@ require(["builders/debugWireframes", "builders/accretionDisk", "builders/lightPi
     return stats
 
   initScene = (settings) ->
-    scene = new THREE.Scene();
+    scene = new THREE.Scene()
     scene.add(debugWireframes(settings))
     scene.add(accretionDisk(settings))
     scene.add(lightPillar(settings))
@@ -55,7 +55,10 @@ require(["builders/debugWireframes", "builders/accretionDisk", "builders/lightPi
       stats.end()
 
 
-
+    config.onFinishChange(() ->
+      scene = initScene(config.settings)
+      render()
+    )
     render()
     animate()
 

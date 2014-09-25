@@ -64,6 +64,10 @@
         controls.update();
         return stats.end();
       };
+      config.onFinishChange(function() {
+        scene = initScene(config.settings);
+        return render();
+      });
       render();
       return animate();
     };
